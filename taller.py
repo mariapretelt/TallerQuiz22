@@ -15,3 +15,7 @@ print(f"Tipo de datos: {matriz_3d.dtype}")
 print(f"Tipo del objeto: {type(matriz_3d)}")
 print(f"Tamaño en bytes de elementos: {matriz_3d.itemsize}")
 print(f"Tamaño memoria: {matriz_3d.nbytes}")
+
+#Modificar su forma y pasarla a 2D
+matriz_2d= matriz_3d.reshape(20,400)
+print(matriz_2d)

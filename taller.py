@@ -6,3 +6,12 @@ matriz=np.random.rand(10,15,20,40)
 #Crea una copia de la matriz creada en el ítem anterior (usar método copy) de solo 3 dimensiones (“Cortando una de las dimensiones”)
 matriz_3d= matriz[:, 0, :, :].copy() #15
 print(matriz_3d)
+
+#De la matriz 3D, muestra todos los atributos propios de dicha matriz , dimensión, tamaño, etc..
+print(f"\nForma: {matriz_3d.shape}")
+print(f"Dimensión: {matriz_3d.ndim}") #num de dim
+print(f"Tamaño: {matriz_3d.size}")
+print(f"Tipo de datos: {matriz_3d.dtype}")
+print(f"Tipo del objeto: {type(matriz_3d)}")
+print(f"Tamaño en bytes de elementos: {matriz_3d.itemsize}")
+print(f"Tamaño memoria: {matriz_3d.nbytes}")

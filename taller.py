@@ -52,6 +52,31 @@ def cargar_archivo(ruta):
         return None
 
          
+#Crear funciones de suma, resta, multiplicación, división, logaritmo ,promedio, desviación 
+# estándar NOTA: Estas funciones deben permitir hacer estos procesos a lo largo de un eje 
+# (usando Numpy)
 
+def suma(matriz, axis=None):
+    return np.sum(matriz, axis=axis)
 
+def resta(matriz, valor, axis=None):
+    return np.subtract(matriz, valor)  
+
+def multiplicacion(matriz, valor, axis=None):
+    return np.multiply(matriz, valor) 
+
+def division(matriz, valor, axis=None):
+    return np.divide(matriz, valor)  
+
+def logaritmo(matriz, base=np.e, axis=None):
+    if base == np.e:
+        return np.log(matriz) 
+    else:
+        return np.log(matriz) / np.log(base)  
+
+def promedio(matriz, axis=None):
+    return np.mean(matriz, axis=axis)
+
+def desviacion_estandar(matriz, axis=None):
+    return np.std(matriz, axis=axis)
 

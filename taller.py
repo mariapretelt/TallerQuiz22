@@ -36,6 +36,22 @@ df=dataframe(matriz_2d)
 print('\n 5to Punto')
 print(df)
 
+# Crear una función que permita cargar un archivo .mat y .csv 
+
+print('Punto 6')
+
+def cargar_archivo(ruta):
+    if ruta.endswith('.csv'):
+            df = pd.read_csv(ruta)
+            return df
+    elif ruta.endswith('.mat'):
+         datos = loadmat(ruta)
+         return datos 
+    else:
+        print('Solo se permiten .csv y .mat')
+        return None
+
+         
 
 
 

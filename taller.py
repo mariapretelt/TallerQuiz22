@@ -80,3 +80,55 @@ def promedio(matriz, axis=None):
 def desviacion_estandar(matriz, axis=None):
     return np.std(matriz, axis=axis)
 
+# Buscar en Kaggle un archivo .csv relacionadas con alguna patología, descargar y hacer 
+# funciones como las propuestas en el ítem anterior, pero implementándolas usando Pandas 
+# y que permitan tambien elegir columnas.
+
+# Cargar el archivo CSV
+
+df = pd.read_csv("diabetes.csv")
+print(df.head()) #priemras filas de dataframe
+
+def suma(df, columnas=['Glucose', 'BMI']):
+   
+    if columnas:
+        return df[columnas].sum()
+    return df.sum()
+
+def resta(df, columnas=None, valor=0):
+
+    if columnas:
+        return df[columnas] - valor
+    return df - valor
+
+def multiplicacion(df, columnas=None, valor=1):
+   
+    if columnas:
+        return df[columnas] * valor
+    return df * valor
+
+def division(df, columnas=None, valor=1):
+   
+    if columnas:
+        return df[columnas] / valor
+    return df / valor
+
+def logaritmo(df, columnas=None, base=np.e):
+   
+    if columnas:
+        return np.log(df[columnas]) / np.log(base)
+    return np.log(df) / np.log(base)
+
+def promedio(df, columnas=None):
+    
+    if columnas:
+        return df[columnas].mean()
+    return df.mean()
+
+def desviacion_estandar(df, columnas=None):
+   
+    if columnas:
+        return df[columnas].std()
+    return df.std()
+print("\nPromedio de Age:")
+print(promedio(df, columnas=['Age']))

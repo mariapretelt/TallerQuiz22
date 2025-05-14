@@ -137,55 +137,129 @@ print(promedio(df, columnas=['Age']))
 #Usar matplotlib para graficar la señal del archivo mat del punto 6 y crear funciones para 
 # graficar histogramas, stems, barras, pies 
 
+# def graficarmat(ruta, nombre_variable='signal'):
+#     datos = loadmat(ruta)
+#     if nombre_variable in datos:
+#         senal = datos[nombre_variable]
+#         plt.figure(figsize=(10, 4))
+#         plt.plot(senal)
+#         plt.title(f'Señal de {nombre_variable} del archivo')
+#         plt.xlabel('Tiempo')
+#         plt.ylabel('Amplitud')
+#         plt.grid(True)
+#         plt.tight_layout()
+#         plt.show()
+#     else:
+#         print(f"La variable no se encontró en el archivo.")
+
+# def histograma(datos, titulo="Histograma", bins=10):
+#     plt.figure()
+#     plt.hist(datos, bins=bins, color='skyblue', edgecolor='black')
+#     plt.title(titulo)
+#     plt.xlabel('Valores')
+#     plt.ylabel('Frecuencia')
+#     plt.grid(True)
+#     plt.show()
+# def graficar_stem(datos, titulo="Gráfico Stem"):
+#     plt.figure()
+#     markerline, stemlines, baseline = plt.stem(datos, use_line_collection=True)
+#     plt.setp(markerline, color='blue')
+#     plt.setp(stemlines, color='green')
+#     plt.title(titulo)
+#     plt.xlabel('Índice')
+#     plt.ylabel('Valor')
+#     plt.grid(True)
+#     plt.show()
+# def graficar_barras(labels, valores, titulo="Gráfico de Barras"):
+#     plt.figure()
+#     plt.bar(labels, valores, color='orange')
+#     plt.title(titulo)
+#     plt.xlabel('Categoría')
+#     plt.ylabel('Valor')
+#     plt.grid(axis='y')
+#     plt.show()
+# def graficar_pie(labels, valores, titulo="Gráfico de Pastel"):
+#     plt.figure()
+#     plt.pie(valores, labels=labels, autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
+#     plt.title(titulo)
+#     plt.axis('equal')  # Para que el gráfico sea circular
+#     plt.show()
+
+#Las funciones de graficación deben pedir al usuario los títulos de gráficos y los ejes, activar 
+# leyendas , activar la cuadricula.
+
 def graficarmat(ruta, nombre_variable='signal'):
     datos = loadmat(ruta)
     if nombre_variable in datos:
-        senal = datos[nombre_variable]
+        senal = datos[nombre_variable].squeeze()
+
+        titulo = input("Título del gráfico: ")
+        xlabel = input("Etiqueta del eje X: ")
+        ylabel = input("Etiqueta del eje Y: ")
+
         plt.figure(figsize=(10, 4))
-        plt.plot(senal)
-        plt.title(f'Señal de {nombre_variable} del archivo')
-        plt.xlabel('Tiempo')
-        plt.ylabel('Amplitud')
+        plt.plot(senal, label=nombre_variable)
+        plt.title(titulo)
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        plt.legend()
         plt.grid(True)
         plt.tight_layout()
         plt.show()
     else:
-        print(f"La variable no se encontró en el archivo.")
+        print(f"La variable '{nombre_variable}' no se encontró en el archivo.")
+def histograma(datos, bins=10):
+    titulo = input("Título del gráfico: ")
+    xlabel = input("Etiqueta del eje X: ")
+    ylabel = input("Etiqueta del eje Y: ")
+    leyenda = input("Nombre de la leyenda para la serie: ")
 
-def histograma(datos, titulo="Histograma", bins=10):
     plt.figure()
-    plt.hist(datos, bins=bins, color='skyblue', edgecolor='black')
+    plt.hist(datos, bins=bins, color='skyblue', edgecolor='black', label=leyenda)
     plt.title(titulo)
-    plt.xlabel('Valores')
-    plt.ylabel('Frecuencia')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.legend()
     plt.grid(True)
     plt.show()
-def graficar_stem(datos, titulo="Gráfico Stem"):
+def graficar_stem(datos):
+    titulo = input("Título del gráfico: ")
+    xlabel = input("Etiqueta del eje X: ")
+    ylabel = input("Etiqueta del eje Y: ")
+    leyenda = input("Nombre de la leyenda para la serie: ")
+
     plt.figure()
-    markerline, stemlines, baseline = plt.stem(datos, use_line_collection=True)
+    markerline, stemlines, baseline = plt.stem(datos, use_line_collection=True, label=leyenda)
     plt.setp(markerline, color='blue')
     plt.setp(stemlines, color='green')
     plt.title(titulo)
-    plt.xlabel('Índice')
-    plt.ylabel('Valor')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.legend()
     plt.grid(True)
     plt.show()
-def graficar_barras(labels, valores, titulo="Gráfico de Barras"):
+def graficar_barras(labels, valores):
+    titulo = input("Título del gráfico: ")
+    xlabel = input("Etiqueta del eje X: ")
+    ylabel = input("Etiqueta del eje Y: ")
+    leyenda = input("Nombre de la leyenda para la serie: ")
+
     plt.figure()
-    plt.bar(labels, valores, color='orange')
+    plt.bar(labels, valores, color='orange', label=leyenda)
     plt.title(titulo)
-    plt.xlabel('Categoría')
-    plt.ylabel('Valor')
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.legend()
     plt.grid(axis='y')
     plt.show()
-def graficar_pie(labels, valores, titulo="Gráfico de Pastel"):
+def graficar_pie(labels, valores):
+    titulo = input("Título del gráfico: ")
     plt.figure()
     plt.pie(valores, labels=labels, autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
     plt.title(titulo)
-    plt.axis('equal')  # Para que el gráfico sea circular
+    plt.axis('equal')
     plt.show()
 
-#Las funciones de graficación deben pedir al usuario los títulos de gráficos y los ejes, activar 
-# leyendas , activar la cuadricula.
+
 
 

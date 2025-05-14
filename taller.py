@@ -3,6 +3,7 @@
 import numpy as np
 import pandas as pd
 from scipy.io import loadmat
+import matplotlib.pyplot as plt
 
 matriz=np.random.rand(10,15,20,40)
 print('Primer punto')
@@ -132,3 +133,59 @@ def desviacion_estandar(df, columnas=None):
     return df.std()
 print("\nPromedio de Age:")
 print(promedio(df, columnas=['Age']))
+
+#Usar matplotlib para graficar la señal del archivo mat del punto 6 y crear funciones para 
+# graficar histogramas, stems, barras, pies 
+
+def graficarmat(ruta, nombre_variable='signal'):
+    datos = loadmat(ruta)
+    if nombre_variable in datos:
+        senal = datos[nombre_variable]
+        plt.figure(figsize=(10, 4))
+        plt.plot(senal)
+        plt.title(f'Señal de {nombre_variable} del archivo')
+        plt.xlabel('Tiempo')
+        plt.ylabel('Amplitud')
+        plt.grid(True)
+        plt.tight_layout()
+        plt.show()
+    else:
+        print(f"La variable no se encontró en el archivo.")
+
+def histograma(datos, titulo="Histograma", bins=10):
+    plt.figure()
+    plt.hist(datos, bins=bins, color='skyblue', edgecolor='black')
+    plt.title(titulo)
+    plt.xlabel('Valores')
+    plt.ylabel('Frecuencia')
+    plt.grid(True)
+    plt.show()
+def graficar_stem(datos, titulo="Gráfico Stem"):
+    plt.figure()
+    markerline, stemlines, baseline = plt.stem(datos, use_line_collection=True)
+    plt.setp(markerline, color='blue')
+    plt.setp(stemlines, color='green')
+    plt.title(titulo)
+    plt.xlabel('Índice')
+    plt.ylabel('Valor')
+    plt.grid(True)
+    plt.show()
+def graficar_barras(labels, valores, titulo="Gráfico de Barras"):
+    plt.figure()
+    plt.bar(labels, valores, color='orange')
+    plt.title(titulo)
+    plt.xlabel('Categoría')
+    plt.ylabel('Valor')
+    plt.grid(axis='y')
+    plt.show()
+def graficar_pie(labels, valores, titulo="Gráfico de Pastel"):
+    plt.figure()
+    plt.pie(valores, labels=labels, autopct='%1.1f%%', startangle=90, colors=plt.cm.Paired.colors)
+    plt.title(titulo)
+    plt.axis('equal')  # Para que el gráfico sea circular
+    plt.show()
+
+#Las funciones de graficación deben pedir al usuario los títulos de gráficos y los ejes, activar 
+# leyendas , activar la cuadricula.
+
+

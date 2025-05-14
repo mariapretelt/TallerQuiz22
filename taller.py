@@ -260,6 +260,45 @@ def graficar_pie(labels, valores):
     plt.axis('equal')
     plt.show()
 
+#Para la graficación permitir al usuario elegir entre un diseño de 3 subplots (vertical, 
+# horizontal o en diagonal), es decir de una columna varias filas o viceversa. 
 
+def graficar_subplots(datos_list, tipo='vertical'):
+    """
+    datos_list: lista de tuplas (x, y, etiqueta) donde:
+        - x: valores del eje x (puede ser None para índice)
+        - y: valores del eje y
+        - etiqueta: etiqueta para la leyenda
 
+    tipo: 'vertical', 'horizontal', 'diagonal'
+    """
 
+    if tipo == 'vertical':
+        fig, axs = plt.subplots(3, 1, figsize=(6, 12))
+    elif tipo == 'horizontal':
+        fig, axs = plt.subplots(1, 3, figsize=(15, 4))
+    elif tipo == 'diagonal':
+        fig, axs = plt.subplots(2, 2, figsize=(10, 8))
+        axs = [axs[0,0], axs[1,1], axs[0,1]]  # 3 espacios usados
+    else:
+        print("Tipo no válido. Usa 'vertical', 'horizontal' o 'diagonal'.")
+        return
+
+    for i, (x, y, etiqueta) in enumerate(datos_list):
+        if i >= 3: break  # Solo se permiten 3 subplots
+        if x is None:
+            x = range(len(y))
+
+        titulo = input(f"Título del gráfico {i+1}: ")
+        xlabel = input(f"Etiqueta del eje X del gráfico {i+1}: ")
+        ylabel = input(f"Etiqueta del eje Y del gráfico {i+1}: ")
+
+        axs[i].plot(x, y, label=etiqueta)
+        axs[i].set_title(titulo)
+        axs[i].set_xlabel(xlabel)
+        axs[i].set_ylabel(ylabel)
+        axs[i].legend()
+        axs[i].grid(True)
+
+    plt.tight_layout()
+    plt.show()

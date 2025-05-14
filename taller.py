@@ -5,10 +5,12 @@ import pandas as pd
 from scipy.io import loadmat
 
 matriz=np.random.rand(10,15,20,40)
-# print(matriz)
+print('Primer punto')
+print(matriz)
 
 #Crea una copia de la matriz creada en el ítem anterior (usar método copy) de solo 3 dimensiones (“Cortando una de las dimensiones”)
 matriz_3d= matriz[:, 0, :, :].copy() #15
+print('\n Segundo punto')
 print(matriz_3d)
 
 #De la matriz 3D, muestra todos los atributos propios de dicha matriz , dimensión, tamaño, etc..
@@ -22,7 +24,18 @@ print(f"Tamaño memoria: {matriz_3d.nbytes}")
 
 #Modificar su forma y pasarla a 2D
 matriz_2d= matriz_3d.reshape(matriz_3d.shape[0], -1)
+print('\n 4to Punto')
 print(matriz_2d)
+
+# Crea una función que reciba la matriz anterior y la pase a un objeto tipo dataframe de 
+# Pandas 
+
+def dataframe(m):
+    return pd.DataFrame(m)
+df=dataframe(matriz_2d)
+print('\n 5to Punto')
+print(df)
+
 
 
 
